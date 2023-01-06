@@ -3,11 +3,18 @@ default:
   threads: 6
   producer_type: FutureProducer
   producer_config:
-    bootstrap.servers: localhost:9092
+    bootstrap.servers: events-kafka001.drt.ewr.stage.squarespace.net:9092
     queue.buffering.max.ms: 100
     queue.buffering.max.messages: 1000000
 
 scenarios:
+  chris_tests:
+    repeat_times: 5
+    repeat_pause: 10
+    topic: ccombs-testing
+    message_size: 10
+    message_count: 200
+
   10B_bursts:
     repeat_times: 5
     repeat_pause: 10

@@ -3,15 +3,21 @@ default:
   repeat_times: 1
   repeat_pause: 0
   consumer_type: BaseConsumer
-  topic: test_topic1
+  topic: ccombs-testing
   consumer_config:
-    bootstrap.servers: localhost:9092
+    security.protocol: SSL
+    ssl.ca.location: /Users/ccombs/SQSP/DB/kafka_2.12-2.8.0/config/auth_artifacts/ca_bundle.p12
+    bootstrap.servers: bootstrap.events-kafka.eqx.dal.stage.squarespace.net:443
     group.id: 'benchmark_consumer_group'
     auto.offset.reset: smallest
     enable.auto.commit: false
     session.timeout.ms: 6000
 
 scenarios:
+  chris_tests:
+    topic: ccombs-testing
+    message_limit: 500
+
   10B_100MB:
     topic: benchmark_topic_10B
     message_limit: 10485760
